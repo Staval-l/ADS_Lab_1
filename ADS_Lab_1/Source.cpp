@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 struct Point
 {
@@ -12,10 +13,53 @@ class Polyline {
 public:
 	Polyline() : arr(nullptr), vertex(0) {}
 	Polyline(int count) : arr(new Point[count]), vertex(count) {}
-	~Polyline() {}
-	double GetLenght() {}
-	void AddToHead() {}
-	void AddToEnd() {}
+	Polyline(const Polyline& p)
+	{
+		arr = new Point[p.vertex];
+		vertex = p.vertex;
+		for (size_t i = 0; i < vertex; i++)
+		{
+			arr[i] = p.arr[i];
+		}
+	}
+	~Polyline() 
+	{
+		delete[] arr;
+		vertex = 0;
+	}
+	double GetLenght() const 
+	{
+		double len = 0;
+		for (size_t i = 0; i < vertex - 1; i++)
+		{
+			len += sqrt((pow(arr[i + 1].x, 2) - pow(arr[i].x, 2)) + (pow(arr[i + 1].y, 2) - pow(arr[i].y, 2)));
+		}
+		return len;
+	}
+	void AddToHead(const Point& point) 
+	{
+		vertex += 1;
+		Point* tmp = new Point[vertex];
+		tmp[0] = point;
+		for (size_t i = 1; i < vertex; i++)
+		{
+			tmp[i] = arr[i - 1];
+		}
+		if (arr != NULL) delete[] arr;
+		arr = tmp;
+	}
+	void AddToEnd(const Point& point) 
+	{
+		vertex += 1;
+		Point* tmp = new Point[vertex];
+		for (size_t i = 0; i < vertex - 1; i++)
+		{
+			tmp[i] = arr[i];
+		}
+		tmp[vertex - 1] = point;
+		if (arr != NULL) delete[] arr;
+		arr = tmp;
+	}
 	Point& operator [] (const size_t index)
 	{
 		if (index >= vertex) throw "Invalid index";
