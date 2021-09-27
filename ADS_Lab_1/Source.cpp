@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <conio.h>
 
 struct Point
 {
@@ -111,7 +112,7 @@ public:
 		if (polyline.arr)
 		{
 			arr = new Point[polyline.vertex];
-			vertex = polyline.vertex; // Уточнить
+			vertex = polyline.vertex; 
 			for (size_t i = 0; i < polyline.vertex; i++)
 			{
 				arr[i] = polyline.arr[i];
@@ -124,24 +125,76 @@ public:
 		}
 		return *this;
 	}
-	friend std::istream& operator>> (std::istream& in, Point& point);
-	// Операторы вывода +-
-	// Оператор обращения по индексу +
-	// Расчет длины ломаной
-	// Добавление в начало/конец
-	// Оператор сложения 2 ломаных +
-	// Перегрузка операторов сравнения
+	friend std::ostream& operator<< (std::ostream& out, const Polyline& polyline);
 };
 
-//std::ostream& operator<< (std::ostream& out, const Polyline& point)
-//{
-//	out << "Point(" << point. << ", " << point. << ", " << point. << ")";
-//	return out;
-//}
-
-std::istream& operator>> (std::istream& in, Point& point)
+std::ostream& operator<< (std::ostream& out, const Polyline& polyline)
 {
-	in >> point.x;
-	in >> point.y;
-	return in;
+	out << "Polyline[";
+	for (size_t i = 0; i < polyline.vertex; i++)
+	{
+		out << "vertex[" << i << "]: " << "(" << polyline.arr[i].x << "," << polyline.arr[i].y;
+		if (i != polyline.vertex - 1) out << "); ";
+		else out << ")";
+	}
+	out << "]";
+	return out;
+}
+
+int GetKey()
+{
+	int key = _getch();
+	if ((key == 0) || (key == 224)) key = _getch();
+	return key;
+}
+
+int Menu()
+{
+	system("cls");
+	std::cout << "Good morning\n\n1 - Add a vertex to the beginning of the polyline\n2 - Add a vertex to the end of the polyline\n3 - Calculate the length of the polyline\n4 - The sum of two broken lines\n5 - Overwrite vertex value\n6 - View the value of the vertex\n\nExit - Esc" << std::endl;
+	while (true)
+	{
+		int key = GetKey();
+		if ((key == 27) || (key == 49) || (key == 50) || (key == 51) || (key == 52) || (key == 53) || (key == 54)) return key;
+	}
+}
+
+int main()
+{
+	Polyline line_1, line_2;
+
+	while (true)
+	{
+		system("cls");
+		int m = Menu();
+		if (m == 27)
+		{
+			break;
+		}
+		if (m == 49)
+		{
+
+		}
+		if (m == 50)
+		{
+
+		}
+		if (m == 51)
+		{
+
+		}
+		if (m == 52)
+		{
+
+		}
+		if (m == 53)
+		{
+
+		}
+		if (m == 54)
+		{
+
+		}
+	}
+	return 0;
 }
