@@ -199,28 +199,18 @@ int main()
 	//}
 	//return 0;
 	Polyline test(4);
-	for (size_t i = 0; i < 4; ++i)
+	for (size_t i = 0; i < 4; ++i)  // Заполнение вершин
 	{
 
-		test[i].x = i;
-		test[i].y = i;
+		test[i].x = (double)6 * i + 2;
+		test[i].y = (double)5 * i + 2;
 	}
 
 	Polyline test_1(1);
-	test_1 = test;
+	test_1 = test;    // Присваивание одного объекта к другому
 	std::cout << test_1 << std::endl;
 
 	std::cout << test << std::endl;
-	std::cout << test.GetLenght() << std::endl;
-	try
-	{
-		test[35];
-		std::cout << test[2].x << std::endl;
-	}
-	catch (const char* err)
-	{
-		std::cerr << err << std::endl;
-	}
 
 	Polyline test_2(2);
 	for (size_t i = 0; i < 2; ++i)
@@ -230,19 +220,30 @@ int main()
 		test_2[i].y = (double)i + 10;
 	}
 
+	std::cout << test.GetLenght() << std::endl;
+	try
+	{
+		test[27];
+		std::cout << test[2].x << std::endl;
+	}
+	catch (const char* err)
+	{
+		std::cerr << err << std::endl;
+	}
+
 	std::cout << test_2 << std::endl;
 	std::cout << test_2.GetLenght() << std::endl;
 
-	Polyline test_3 = test + test_2;
+	Polyline test_3 = test + test_2; // Конкатенация
 
-	std::cout << (test_2 == test_3) << std::endl;
+	std::cout << (test_2 == test_3) << std::endl;  // Сравнение
 	std::cout << (test_2 != test_3) << std::endl;
 
-	Point p;
+	Point p;  // Создание вершины
 	p.x = 45;
 	p.y = 13;
 
-	test_3.AddToHead(p);
+	test_3.AddToHead(p);  // Добавление этой вершины в ломаную
 	test_3.AddToEnd(p);
 
 	std::cout << test_3 << std::endl;
