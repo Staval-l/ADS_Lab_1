@@ -10,7 +10,7 @@ struct Point
 
 class Polyline {
 	Point* arr;
-	int vertex;
+	size_t vertex;
 public:
 	Polyline() : arr(nullptr), vertex(0) {}
 	Polyline(int count) : arr(new Point[count]), vertex(count) {}
@@ -33,7 +33,7 @@ public:
 		double len = 0;
 		for (size_t i = 0; i < vertex - 1; i++)
 		{
-			len += sqrt((pow(arr[i + 1].x, 2) - pow(arr[i].x, 2)) + (pow(arr[i + 1].y, 2) - pow(arr[i].y, 2)));
+			len += sqrt((pow(arr[i + 1].x - arr[i].x, 2) + (pow(arr[i + 1].y - arr[i].y, 2))));
 		}
 		return len;
 	}
@@ -130,14 +130,14 @@ public:
 
 std::ostream& operator<< (std::ostream& out, const Polyline& polyline)
 {
-	out << "Polyline[";
+	out << "Polyline <";
 	for (size_t i = 0; i < polyline.vertex; i++)
 	{
 		out << "vertex[" << i << "]: " << "(" << polyline.arr[i].x << "," << polyline.arr[i].y;
 		if (i != polyline.vertex - 1) out << "); ";
 		else out << ")";
 	}
-	out << "]";
+	out << ">";
 	return out;
 }
 
@@ -161,40 +161,91 @@ int Menu()
 
 int main()
 {
-	Polyline line_1, line_2;
+	//Polyline line_1, line_2;
 
-	while (true)
+	//while (true)
+	//{
+	//	system("cls");
+	//	int m = Menu();
+	//	if (m == 27)
+	//	{
+	//		break;
+	//	}
+	//	if (m == 49)
+	//	{
+
+	//	}
+	//	if (m == 50)
+	//	{
+
+	//	}
+	//	if (m == 51)
+	//	{
+	//		system("cls");
+
+	//	}
+	//	if (m == 52)
+	//	{
+
+	//	}
+	//	if (m == 53)
+	//	{
+
+	//	}
+	//	if (m == 54)
+	//	{
+
+	//	}
+	//}
+	//return 0;
+	Polyline test(4);
+	for (size_t i = 0; i < 4; ++i)
 	{
-		system("cls");
-		int m = Menu();
-		if (m == 27)
-		{
-			break;
-		}
-		if (m == 49)
-		{
 
-		}
-		if (m == 50)
-		{
-
-		}
-		if (m == 51)
-		{
-
-		}
-		if (m == 52)
-		{
-
-		}
-		if (m == 53)
-		{
-
-		}
-		if (m == 54)
-		{
-
-		}
+		test[i].x = i;
+		test[i].y = i;
 	}
+
+	Polyline test_1(1);
+	test_1 = test;
+	std::cout << test_1 << std::endl;
+
+	std::cout << test << std::endl;
+	std::cout << test.GetLenght() << std::endl;
+	try
+	{
+		test[35];
+		std::cout << test[2].x << std::endl;
+	}
+	catch (const char* err)
+	{
+		std::cerr << err << std::endl;
+	}
+
+	Polyline test_2(2);
+	for (size_t i = 0; i < 2; ++i)
+	{
+
+		test_2[i].x = (double)i + 10;
+		test_2[i].y = (double)i + 10;
+	}
+
+	std::cout << test_2 << std::endl;
+	std::cout << test_2.GetLenght() << std::endl;
+
+	Polyline test_3 = test + test_2;
+
+	std::cout << (test_2 == test_3) << std::endl;
+	std::cout << (test_2 != test_3) << std::endl;
+
+	Point p;
+	p.x = 45;
+	p.y = 13;
+
+	test_3.AddToHead(p);
+	test_3.AddToEnd(p);
+
+	std::cout << test_3 << std::endl;
+
 	return 0;
 }
