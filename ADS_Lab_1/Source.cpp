@@ -173,7 +173,7 @@ int Menu_1()
 
 int main()
 {
-	Polyline line_1, line_2, tmp;
+	Polyline line_1, line_2;
 	while (true)
 	{
 		system("cls");
@@ -444,16 +444,14 @@ int main()
 				if (m1 == 49)
 				{
 					system("cls");
-					tmp = line_1 + line_2;
-					line_1 = tmp;
+					line_1 = line_1 + line_2;
 					std::cout << "Successfully" << std::endl;
 					std::cin.get();
 				}
 				if (m1 == 50)
 				{
 					system("cls");
-					tmp = line_2 + line_1;
-					line_2 = tmp;
+					line_2 = line_2 + line_1;
 					std::cout << "Successfully" << std::endl;
 					std::cin.get();
 				}
