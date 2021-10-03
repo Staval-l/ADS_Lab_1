@@ -10,11 +10,13 @@ Polyline::Polyline(const Polyline& p)
 		arr[i] = p.arr[i];
 	}
 }
+
 Polyline::~Polyline()
 {
 	delete[] arr;
 	vertex = 0;
 }
+
 double Polyline::GetLenght() const
 {
 	if (arr == nullptr) throw "Line is empty";
@@ -25,6 +27,7 @@ double Polyline::GetLenght() const
 	}
 	return len;
 }
+
 void Polyline::AddToHead(const Point& point)
 {
 	vertex += 1;
@@ -37,6 +40,7 @@ void Polyline::AddToHead(const Point& point)
 	if (arr != NULL) delete[] arr;
 	arr = tmp;
 }
+
 void Polyline::AddToEnd(const Point& point)
 {
 	vertex += 1;
@@ -49,18 +53,21 @@ void Polyline::AddToEnd(const Point& point)
 	if (arr != NULL) delete[] arr;
 	arr = tmp;
 }
+
 Point& Polyline::operator [] (const size_t index)
 {
 	if (arr == nullptr) throw "Line is empty";
 	if ((index >= vertex) || (index < 0)) throw "Invalid index";
 	return arr[index];
 }
+
 Point Polyline::operator [] (const size_t index) const
 {
 	if (arr == nullptr) throw "Line is empty";
 	if ((index >= vertex) || (index < 0)) throw "Invalid index";
 	return arr[index];
 }
+
 Polyline Polyline::operator + (const Polyline& polyline)
 {
 	if (!vertex) return polyline;
@@ -77,6 +84,7 @@ Polyline Polyline::operator + (const Polyline& polyline)
 	}
 	return res;
 }
+
 bool Polyline::operator == (const Polyline& polyline)
 {
 	if (vertex != polyline.vertex) return false;
@@ -86,6 +94,7 @@ bool Polyline::operator == (const Polyline& polyline)
 	}
 	return true;
 }
+
 bool Polyline::operator != (const Polyline& polyline)
 {
 	if (vertex != polyline.vertex) return true;
@@ -95,6 +104,7 @@ bool Polyline::operator != (const Polyline& polyline)
 	}
 	return false;
 }
+
 Polyline& Polyline::operator = (const Polyline& polyline)
 {
 	if (this == (&polyline)) return *this;
