@@ -12,6 +12,7 @@
 *.vcxproj
 .vcxproj.
 *.sln
+ADS_Lab_1.vcxproj.filters
 ADS_Lab_1.sln
 
 # User-specific files (MonoDevelop/Xamarin Studio)
