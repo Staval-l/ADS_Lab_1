@@ -1,7 +1,20 @@
 #include <iostream>
+#include <complex>
 #include "Polyline.h"
 
-Polyline::Polyline(const Polyline& p)
+template <class T>
+Polyline<T>::Polyline() : arr(nullptr), vertex(0) {}
+
+template <class T>
+Polyline<T>::Polyline(int count)
+{
+	if (count < 0) throw "Invalid index";
+	arr = new T[count];
+	vertex = count;
+}
+
+template <class T>
+Polyline<T>::Polyline(const Polyline<T>& p)
 {
 	arr = new Point[p.vertex];
 	vertex = p.vertex;
@@ -11,13 +24,15 @@ Polyline::Polyline(const Polyline& p)
 	}
 }
 
-Polyline::~Polyline()
+template <class T>
+Polyline<T>::~Polyline()
 {
 	delete[] arr;
 	vertex = 0;
 }
 
-double Polyline::GetLenght() const
+template <class T>
+auto Polyline<T>::GetLenght() const
 {
 	if (arr == nullptr) throw "Line is empty";
 	double len = 0;
@@ -28,7 +43,8 @@ double Polyline::GetLenght() const
 	return len;
 }
 
-void Polyline::AddToHead(const Point& point)
+template <class T>
+void Polyline<T>::AddToHead(const T& point)
 {
 	vertex += 1;
 	Point* tmp = new Point[vertex];
@@ -41,7 +57,8 @@ void Polyline::AddToHead(const Point& point)
 	arr = tmp;
 }
 
-void Polyline::AddToEnd(const Point& point)
+template <class T>
+void Polyline<T>::AddToEnd(const T& point)
 {
 	vertex += 1;
 	Point* tmp = new Point[vertex];
@@ -54,21 +71,24 @@ void Polyline::AddToEnd(const Point& point)
 	arr = tmp;
 }
 
-Point& Polyline::operator [] (const size_t index)
+template <class T>
+T& Polyline<T>::operator [] (const size_t index)
 {
 	if (arr == nullptr) throw "Line is empty";
 	if ((index >= vertex) || (index < 0)) throw "Invalid index";
 	return arr[index];
 }
 
-Point Polyline::operator [] (const size_t index) const
+template <class T>
+T Polyline<T>::operator [] (const size_t index) const
 {
 	if (arr == nullptr) throw "Line is empty";
 	if ((index >= vertex) || (index < 0)) throw "Invalid index";
 	return arr[index];
 }
 
-Polyline Polyline::operator + (const Polyline& polyline)
+template <class T>
+Polyline<T> Polyline<T>::operator + (const Polyline<T>& polyline)
 {
 	if (!vertex) return polyline;
 	if (!polyline.vertex) return *this;
@@ -85,7 +105,8 @@ Polyline Polyline::operator + (const Polyline& polyline)
 	return res;
 }
 
-bool Polyline::operator == (const Polyline& polyline)
+template <class T>
+bool Polyline<T>::operator == (const Polyline<T>& polyline)
 {
 	if (vertex != polyline.vertex) return false;
 	for (size_t i = 0; i < vertex; i++)
@@ -95,7 +116,8 @@ bool Polyline::operator == (const Polyline& polyline)
 	return true;
 }
 
-bool Polyline::operator != (const Polyline& polyline)
+template <class T>
+bool Polyline<T>::operator != (const Polyline<T>& polyline)
 {
 	if (vertex != polyline.vertex) return true;
 	for (size_t i = 0; i < vertex; i++)
@@ -105,7 +127,8 @@ bool Polyline::operator != (const Polyline& polyline)
 	return false;
 }
 
-Polyline& Polyline::operator = (const Polyline& polyline)
+template <class T>
+Polyline<T>& Polyline<T>::operator = (const Polyline<T>& polyline)
 {
 	if (this == (&polyline)) return *this;
 	if (arr) delete[] arr;
@@ -126,7 +149,8 @@ Polyline& Polyline::operator = (const Polyline& polyline)
 	return *this;
 }
 
-std::ostream& operator<< (std::ostream& out, const Polyline& polyline)
+template <class T>
+std::ostream& operator<< (std::ostream& out, const Polyline<T>& polyline)
 {
 	out << "Polyline <";
 	for (size_t i = 0; i < polyline.vertex; i++)

@@ -34,7 +34,7 @@ int Menu_1()
 
 int main()
 {
-	Polyline line_1, line_2;
+	Polyline<IntPoint2> line_1, line_2;
 	while (true)
 	{
 		system("cls");
@@ -53,12 +53,12 @@ int main()
 				if (m1 == 49)
 				{
 					system("cls");
-					Point p;
+					IntPoint2 p;
 					std::cout << "Enter the coordinates of the point" << std::endl;
 					std::cout << "Enter x: " << std::endl;
-					std::cin >> p.x;
+					std::cin >> p._x;
 					std::cout << "Enter y: " << std::endl;
-					std::cin >> p.y;
+					std::cin >> p._y;
 					try
 					{
 						line_1.AddToHead(p);
@@ -73,12 +73,12 @@ int main()
 				if (m1 == 50)
 				{
 					system("cls");
-					Point p;
+					IntPoint2 p;
 					std::cout << "Enter the coordinates of the point" << std::endl;
 					std::cout << "Enter x: " << std::endl;
-					std::cin >> p.x;
+					std::cin >> p._x;
 					std::cout << "Enter y: " << std::endl;
-					std::cin >> p.y;
+					std::cin >> p._y;
 					try
 					{
 						line_2.AddToHead(p);
@@ -102,12 +102,12 @@ int main()
 				if (m1 == 49)
 				{
 					system("cls");
-					Point p;
+					IntPoint2 p;
 					std::cout << "Enter the coordinates of the point" << std::endl;
 					std::cout << "Enter x: " << std::endl;
-					std::cin >> p.x;
+					std::cin >> p._x;
 					std::cout << "Enter y: " << std::endl;
-					std::cin >> p.y;
+					std::cin >> p._y;
 					try
 					{
 						line_1.AddToEnd(p);
@@ -122,12 +122,12 @@ int main()
 				if (m1 == 50)
 				{
 					system("cls");
-					Point p;
+					IntPoint2 p;
 					std::cout << "Enter the coordinates of the point" << std::endl;
 					std::cout << "Enter x: " << std::endl;
-					std::cin >> p.x;
+					std::cin >> p._x;
 					std::cout << "Enter y: " << std::endl;
-					std::cin >> p.y;
+					std::cin >> p._y;
 					try
 					{
 						line_2.AddToEnd(p);
@@ -216,10 +216,10 @@ int main()
 					std::cin >> index;
 					try
 					{
-						std::cout << "Your element: " << "[" << line_1[index].x << ";" << line_1[index].y << "]" << std::endl;
+						std::cout << "Your element: " << "[" << line_1[index]._x << ";" << line_1[index]._y << "]" << std::endl;
 						std::cout << "Enter new value: " << std::endl;
-						std::cin >> line_1[index].x;
-						std::cin >> line_1[index].y;
+						std::cin >> line_1[index]._x;
+						std::cin >> line_1[index]._y;
 						std::cin.get();
 
 					}
@@ -238,10 +238,10 @@ int main()
 					std::cin >> index;
 					try
 					{
-						std::cout << "Your element: " << "[" << line_2[index].x << ";" << line_2[index].y << "]" << std::endl;
+						std::cout << "Your element: " << "[" << line_2[index]._x << ";" << line_2[index]._y << "]" << std::endl;
 						std::cout << "Enter new value: " << std::endl;
-						std::cin >> line_2[index].x;
-						std::cin >> line_2[index].y;
+						std::cin >> line_2[index]._x;
+						std::cin >> line_2[index]._y;
 						std::cin.get();
 
 					}
@@ -269,7 +269,7 @@ int main()
 					std::cin >> index;
 					try
 					{
-						std::cout << "Your element: " << "[" << line_1[index].x << ";" << line_1[index].y << "]" << std::endl;
+						std::cout << "Your element: " << "[" << line_1[index]._x << ";" << line_1[index]._y << "]" << std::endl;
 						std::cin.get();
 					}
 					catch (const char* err)
@@ -287,7 +287,7 @@ int main()
 					std::cin >> index;
 					try
 					{
-						std::cout << "Your element: " << "[" << line_2[index].x << ";" << line_2[index].y << "]" << std::endl;
+						std::cout << "Your element: " << "[" << line_2[index]._x << ";" << line_2[index]._y << "]" << std::endl;
 						std::cin.get();
 					}
 					catch (const char* err)
