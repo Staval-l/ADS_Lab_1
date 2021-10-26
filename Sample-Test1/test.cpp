@@ -1,7 +1,6 @@
-//#include "pch.h"
-//#include "../ADS_Lab_1/Polyline.h"
-//#include "../ADS_Lab_1/Polyline.cpp"
-//
+#include "pch.h"
+#include "../ADS_Lab_1/Polyline.h"
+
 //TEST(Polyline, Constructor) {
 //	Polyline p;
 //	EXPECT_THROW(p.GetLenght(), const char*);
